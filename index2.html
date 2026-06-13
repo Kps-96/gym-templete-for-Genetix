@@ -178,6 +178,53 @@
   .map-btn { background: transparent; border: 1px solid var(--acid); color: var(--acid); font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 2px; padding: 0.7rem 1.8rem; font-size: 0.85rem; cursor: pointer; transition: background 0.2s, color 0.2s; text-decoration: none; white-space: nowrap; }
   .map-btn:hover { background: var(--acid); color: #000; }
 
+
+.gym-form{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+}
+
+.cta-input{
+  width:100%;
+  padding:1rem 1.25rem;
+  border:1px solid rgba(0,0,0,0.1);
+  background:#fff;
+  font-size:0.95rem;
+  outline:none;
+  transition:0.3s ease;
+}
+
+.cta-input:focus{
+  border-color:#000;
+}
+
+textarea.cta-input{
+  resize:none;
+}
+
+.cta-submit{
+  width:100%;
+  padding:1rem;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+@media(max-width:768px){
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+}
+
   /* FOOTER */
   footer { background: #0a0a0a; padding: 3rem 4rem; border-top: 1px solid #1a1a1a; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
@@ -353,6 +400,33 @@
   </div>
 </section>
 
+<!-- TIMINGS BAR -->
+<div class="timings-bar">
+  <div class="timing-item">
+    <span style="font-size:1.3rem;"><i class="fa-solid fa-mug-hot text-black"></i></span>
+    <div>
+      <div class="timing-label">Morning Batch</div>
+      <div class="timing-val">6:00 AM – 10:00 AM</div>
+    </div>
+  </div>
+  <div class="timing-sep"></div>
+  <div class="timing-item">
+    <span style="font-size:1.3rem;"><i class="fa-solid fa-moon text-black "></i></span>
+    <div>
+      <div class="timing-label">Evening Batch</div>
+      <div class="timing-val">4:30 PM – 8:30 PM</div>
+    </div>
+  </div>
+  <div class="timing-sep"></div>
+  <div class="timing-item">
+    <span style="font-size:1.3rem;"><i class="fa-solid fa-phone text-black"></i></span>
+    <div>
+      <div class="timing-label">Call Us</div>
+      <div class="timing-val">098946 46779</div>
+    </div>
+  </div>
+</div>
+
 <!-- ABOUT -->
 <section id="about" style="background:var(--card);">
   <div style="max-width:1200px;margin:0 auto;">
@@ -375,9 +449,6 @@
             </div>
           </div>
           <div class="play-btn" onclick="this.style.display='none'">
-            <div class="play-circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg>
-            </div>
           </div>
         </div>
       </div>
@@ -421,55 +492,28 @@
     <h2 class="section-title reveal">FUEL YOUR <span class="accent">AMBITION</span><br><span class="outline">IGNITE</span> YOUR PASSION</h2>
     <div class="why-grid">
       <div class="why-card reveal">
-        <div class="why-icon">🏋️</div>
+        <div class="why-icon"><i class="fa-solid fa-dumbbell"></i></div>
         <div class="why-title">Strong Equipment</div>
         <div class="why-desc">A wide array of fitness equipment catering to various workout styles and training goals at every level.</div>
       </div>
       <div class="why-card reveal" style="transition-delay:0.1s">
-        <div class="why-icon">🎯</div>
+        <div class="why-icon"><i class="fa-solid fa-bullseye"></i></div>
         <div class="why-title">Expert Guidance</div>
         <div class="why-desc">Certified trainers providing cutting-edge fitness guidance and personalised training programmes for every member.</div>
       </div>
       <div class="why-card reveal" style="transition-delay:0.2s">
-        <div class="why-icon">🤝</div>
+        <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
         <div class="why-title">Community & Support</div>
         <div class="why-desc">A vibrant fitness community with diverse training groups that keep you motivated and accountable every session.</div>
       </div>
       <div class="why-card reveal" style="transition-delay:0.3s">
-        <div class="why-icon">🕐</div>
+        <div class="why-icon"><i class="fa-solid fa-clock"></i></div>
         <div class="why-title">Flexible Timings</div>
-        <div class="why-desc">Morning (5–10 AM) and evening (4:30–8:30 PM) batches designed to fit around your schedule.</div>
+        <div class="why-desc">Morning (6–10 AM) and evening (4:30–8:30 PM) batches designed to fit around your schedule.</div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- TIMINGS BAR -->
-<div class="timings-bar">
-  <div class="timing-item">
-    <span style="font-size:1.3rem;">🌅</span>
-    <div>
-      <div class="timing-label">Morning Batch</div>
-      <div class="timing-val">5:00 AM – 10:00 AM</div>
-    </div>
-  </div>
-  <div class="timing-sep"></div>
-  <div class="timing-item">
-    <span style="font-size:1.3rem;">🌆</span>
-    <div>
-      <div class="timing-label">Evening Batch</div>
-      <div class="timing-val">4:30 PM – 8:30 PM</div>
-    </div>
-  </div>
-  <div class="timing-sep"></div>
-  <div class="timing-item">
-    <span style="font-size:1.3rem;">📞</span>
-    <div>
-      <div class="timing-label">Call Us</div>
-      <div class="timing-val">098946 46779</div>
-    </div>
-  </div>
-</div>
 
 <!-- PRICING -->
 <section id="pricing" style="background:var(--card);">
@@ -605,18 +649,76 @@
   </div>
 </div>
 
+<!-- RESPONSIVE MAP EMBED -->
+<!-- <div class="map-embed" aria-hidden="false" class="max-h-3/4" >
+  <div class="map-frame">
+    <iframe title="Genetix Fitness location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.2653768552404!2d76.97525999999999!3d11.018704999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba858520d8c4e95%3A0x961ff20d2cad5166!2sGenetix%20Fitness!5e0!3m2!1sen!2sin!4v1781349814647!5m2!1sen!2sin" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" style="border:0;" ></iframe>
+  </div>
+</div> -->
+
 <!-- CTA / CONTACT -->
 <section id="contact">
   <div class="cta-section" style="padding:4rem;border-radius:0;">
     <div class="cta-content">
-      <div style="font-size:0.75rem;letter-spacing:4px;color:rgba(0,0,0,0.6);text-transform:uppercase;margin-bottom:0.5rem;">Coimbatore's Premier Gym</div>
-      <h2 class="cta-title">LET'S JOIN OUR<br>COMMUNITY</h2>
-      <p class="cta-sub">Where fitness meets inspiration and every drop of sweat tells a story of determination. Start your journey today.</p>
-      <div class="cta-form">
-        <input class="cta-input" type="email" placeholder="Enter your email address" id="ctaEmail"/>
-        <button class="cta-submit" onclick="handleCTASubmit()">GET STARTED</button>
+
+      <div style="font-size:0.75rem;letter-spacing:4px;color:rgba(0,0,0,0.6);text-transform:uppercase;margin-bottom:0.5rem;">
+        Start Your Fitness Journey
       </div>
-      <p class="cta-phone">Or call us directly: <a href="tel:09894646779">098946 46779</a></p>
+
+      <h2 class="cta-title">
+        BOOK YOUR FREE<br>
+        FITNESS CONSULTATION
+      </h2>
+
+      <p class="cta-sub">
+        Tell us about your fitness goals and our trainers will create a personalized plan for you.
+      </p>
+
+      <form class="gym-form">
+
+        <div class="form-grid">
+
+          <input type="text" class="cta-input" placeholder="Full Name" required>
+
+          <input type="tel" class="cta-input" placeholder="Phone Number" required>
+
+          <input type="number" class="cta-input" placeholder="Age" required>
+
+          <input type="number" class="cta-input" placeholder="Weight (kg)" required>
+
+          <input type="number" class="cta-input" placeholder="Height (cm)" required>
+
+          <input type="text" class="cta-input" placeholder="Location / Area" required>
+
+        </div>
+
+        <select class="cta-input" required>
+          <option value="">Select Your Goal</option>
+          <option>Weight Loss</option>
+          <option>Muscle Gain</option>
+          <option>Body Transformation</option>
+          <option>Strength Training</option>
+          <option>General Fitness</option>
+          <option>Sports Performance</option>
+        </select>
+
+        <textarea
+          class="cta-input"
+          rows="4"
+          placeholder="Tell us about your fitness goals or any health concerns..."
+        ></textarea>
+
+        <button type="submit" class="cta-submit">
+          BOOK FREE CONSULTATION
+        </button>
+
+      </form>
+
+      <p class="cta-phone">
+        Need immediate assistance?
+        <a href="tel:09894646779">098946 46779</a>
+      </p>
+
     </div>
   </div>
 </section>
@@ -626,12 +728,12 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo-text" style="font-size:1.8rem;">GENE<span>TIX</span></div>
+        <div class="logo-text" style="font-size:1.8rem;">GENE<span>TIX</span> FITNESS</div>
         <p>Coimbatore's trusted fitness destination. MS Complex, Siddhapudur — transforming bodies and inspiring lives since day one.</p>
         <div class="footer-socials">
-          <a href="#" class="social-btn" title="Facebook">f</a>
-          <a href="#" class="social-btn" title="Instagram">ig</a>
-          <a href="#" class="social-btn" title="YouTube">yt</a>
+          <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+          <a href="#" class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
       <div>
@@ -647,7 +749,7 @@
       <div>
         <div class="footer-heading">Timings</div>
         <ul class="footer-links">
-          <li><a href="#">Morning: 5–10 AM</a></li>
+          <li><a href="#">Morning: 6–10 AM</a></li>
           <li><a href="#">Evening: 4:30–8:30 PM</a></li>
           <li><a href="#">Mon–Sat Open</a></li>
           <li><a href="#">Sunday: Enquire</a></li>
@@ -664,8 +766,8 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Genetix Fitness, Coimbatore. All rights reserved.</p>
-      <p>📍 2X9G+F4 New Siddhapudur, Tamil Nadu</p>
+      <p>© 2026 Genetix Fitness, Coimbatore. All rights reserved.</p>
+      <p><i class="fa-solid fa-location-dot"></i> 2X9G+F4 New Siddhapudur, Tamil Nadu</p>
     </div>
   </div>
 </footer>
@@ -698,7 +800,7 @@ document.getElementById('hamburger').addEventListener('click', function() {
 });
 
 // Popular times chart (Saturday data)
-const saturdayData = [20, 45, 30, 20, 75, 90, 85, 60, 40, 55, 80, 95, 60];
+const saturdayData = [50, 55, 55, 35, 0, 0, 0, 0, 0, 55, 80, 95, 60];
 const chart = document.getElementById('timesChart');
 if (chart) {
   const maxH = Math.max(...saturdayData);
