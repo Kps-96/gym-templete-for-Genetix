@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Genetix Fitness — Coimbatore</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --acid: #C8FF00;
+    --dark: #0D0D0D;
+    --card: #1A1A1A;
+    --mid: #252525;
+    --gray: #888888;
+    --light: #CCCCCC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--acid); border-radius: 2px; }
+
+  .oswald { font-family: 'Oswald', sans-serif; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; transition: background 0.3s; }
+  nav.scrolled { background: rgba(13,13,13,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid #222; }
+  .logo-text { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+  .logo-text span { color: var(--acid); }
+  .nav-links a { color: var(--light); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; margin-left: 2rem; }
+  .nav-links a:hover { color: var(--acid); }
+  .nav-cta { background: var(--acid); color: #000; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 1.5px; padding: 0.55rem 1.4rem; font-size: 0.85rem; cursor: pointer; border: none; transition: transform 0.15s, box-shadow 0.15s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,255,0,0.4); }
+
+  /* HERO */
+  .hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
+  .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0D0D0D 0%, #1a1a1a 50%, #0D0D0D 100%); }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(200,255,0,0.05) 0%, transparent 60%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-slash { position: absolute; right: 0; top: 0; bottom: 0; width: 55%; clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%); background: var(--card); overflow: hidden; }
+  .hero-slash::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(200,255,0,0.08) 0%, transparent 50%, rgba(200,255,0,0.04) 100%); }
+  .hero-img-container { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; }
+  .hero-img-placeholder { width: 100%; height: 90%; background: linear-gradient(180deg, transparent 0%, rgba(200,255,0,0.08) 50%, transparent 100%); display: flex; align-items: center; justify-content: center; }
+  .hero-dumbbell { font-size: 12rem; opacity: 0.15; filter: grayscale(1); }
+  .hero-content { position: relative; z-index: 2; padding: 2rem 4rem; max-width: 640px; }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 4px; color: var(--acid); text-transform: uppercase; margin-bottom: 1.2rem; font-weight: 500; }
+  .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 700; line-height: 0.95; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 1.5rem; }
+  .hero-title .accent { color: var(--acid); -webkit-text-stroke: 0px; }
+  .hero-title .outline { -webkit-text-stroke: 2px var(--acid); color: transparent; }
+  .hero-sub { color: var(--gray); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin-bottom: 2rem; }
+  .hero-stats { display: flex; gap: 2.5rem; margin-bottom: 2.5rem; }
+  .stat-num { font-family: 'Oswald', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--acid); }
+  .stat-label { font-size: 0.72rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .hero-btns { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary { background: var(--acid); color: #000; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 2px; padding: 0.75rem 2rem; font-size: 0.9rem; cursor: pointer; border: none; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); transition: transform 0.15s, box-shadow 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(200,255,0,0.45); }
+  .btn-ghost { color: #fff; font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 2px; font-size: 0.9rem; cursor: pointer; background: transparent; border: 1px solid #444; padding: 0.75rem 2rem; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); transition: border-color 0.2s, color 0.2s; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--acid); color: var(--acid); }
+
+  /* RATING BADGE */
+  .rating-badge { position: absolute; top: 50%; right: 5%; transform: translateY(-50%); z-index: 3; background: var(--card); border: 1px solid #333; padding: 1.2rem 1.5rem; min-width: 160px; }
+  .rating-score { font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; color: var(--acid); line-height: 1; }
+  .rating-stars { color: var(--acid); font-size: 1rem; margin: 0.3rem 0; letter-spacing: 2px; }
+  .rating-count { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* BRAND BAR */
+  .brand-bar { background: var(--acid); padding: 1rem 4rem; display: flex; align-items: center; justify-content: space-around; gap: 2rem; overflow: hidden; }
+  .brand-item { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 2px; color: #000; text-transform: uppercase; white-space: nowrap; }
+  .brand-sep { color: rgba(0,0,0,0.3); font-size: 1.2rem; }
+
+  /* SECTIONS */
+  section { padding: 5rem 4rem; }
+  .section-eyebrow { font-size: 0.72rem; letter-spacing: 4px; color: var(--acid); text-transform: uppercase; margin-bottom: 0.8rem; font-weight: 500; }
+  .section-title { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
+  .section-title .accent { color: var(--acid); }
+  .section-title .outline { -webkit-text-stroke: 1.5px #555; color: transparent; }
+
+  /* PROGRAMS */
+  .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3rem; background: #333; }
+  .program-card { background: var(--card); position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+  .program-card:first-child { grid-row: span 1; }
+  .program-card-inner { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.9) 100%); transition: transform 0.4s; }
+  .program-card:hover .program-card-inner { transform: translateY(-5px); }
+  .program-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .program-name { font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .program-tag { display: inline-block; background: var(--acid); color: #000; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; padding: 0.2rem 0.6rem; text-transform: uppercase; margin-top: 0.4rem; }
+  .program-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 8rem; opacity: 0.07; transition: opacity 0.3s, transform 0.4s; }
+  .program-card:hover .program-bg { opacity: 0.12; transform: scale(1.1); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+  .about-video { position: relative; aspect-ratio: 16/9; background: var(--card); overflow: hidden; }
+  .about-video-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #252525); font-size: 10rem; opacity: 0.1; }
+  .play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .play-circle { width: 70px; height: 70px; background: var(--acid); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; }
+  .play-circle:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(200,255,0,0.5); }
+  .play-circle svg { margin-left: 5px; }
+  .about-body { color: var(--gray); line-height: 1.75; font-size: 0.95rem; margin-bottom: 2rem; }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+  .feature-item { display: flex; align-items: flex-start; gap: 0.7rem; }
+  .feature-icon { color: var(--acid); font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+  .feature-text { font-size: 0.85rem; color: var(--light); line-height: 1.5; }
+  .address-box { background: var(--card); border-left: 3px solid var(--acid); padding: 1rem 1.2rem; font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+  .address-box strong { color: #fff; display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+
+  /* WHY US */
+  .why-section { background: var(--card); }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+  .why-card { padding: 1.5rem; border: 1px solid #2a2a2a; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+  .why-card:hover { border-color: var(--acid); transform: translateY(-4px); }
+  .why-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,255,0,0.03) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; }
+  .why-card:hover::before { opacity: 1; }
+  .why-icon { width: 48px; height: 48px; background: rgba(200,255,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+  .why-title { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .why-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3rem; background: #2a2a2a; }
+  .price-card { background: var(--card); padding: 2.5rem; position: relative; overflow: hidden; transition: transform 0.3s; }
+  .price-card:hover { transform: translateY(-6px); z-index: 2; }
+  .price-card.featured { background: #1e1e1e; border-top: 3px solid var(--acid); }
+  .price-badge { position: absolute; top: 1rem; right: 1rem; background: var(--acid); color: #000; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; padding: 0.25rem 0.6rem; text-transform: uppercase; }
+  .price-plan { font-size: 0.72rem; letter-spacing: 3px; color: var(--gray); text-transform: uppercase; margin-bottom: 0.8rem; }
+  .price-amount { font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.3rem; }
+  .price-amount span { font-size: 1.2rem; color: var(--acid); }
+  .price-period { font-size: 0.78rem; color: var(--gray); margin-bottom: 1.5rem; }
+  .price-divider { height: 1px; background: #333; margin-bottom: 1.5rem; }
+  .price-features { list-style: none; margin-bottom: 2rem; }
+  .price-features li { font-size: 0.83rem; color: var(--light); padding: 0.4rem 0; display: flex; align-items: center; gap: 0.6rem; }
+  .price-features li::before { content: '✓'; color: var(--acid); font-weight: 700; font-size: 0.9rem; }
+  .price-features li.off { color: var(--gray); }
+  .price-features li.off::before { content: '✕'; color: #444; }
+
+  /* TIMINGS */
+  .timings-bar { background: var(--acid); padding: 1.2rem 4rem; display: flex; align-items: center; justify-content: center; gap: 3rem; }
+  .timing-item { display: flex; align-items: center; gap: 0.8rem; }
+  .timing-label { font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; color: #000; text-transform: uppercase; }
+  .timing-val { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; color: #000; }
+  .timing-sep { width: 1px; height: 30px; background: rgba(0,0,0,0.2); }
+
+  /* REVIEWS */
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .review-card { background: var(--card); padding: 1.5rem; border: 1px solid #222; position: relative; transition: border-color 0.3s; }
+  .review-card:hover { border-color: #444; }
+  .review-stars { color: var(--acid); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.85rem; color: var(--light); line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 0.8rem; }
+  .review-avatar { width: 38px; height: 38px; background: var(--acid); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-weight: 700; color: #000; font-size: 1rem; flex-shrink: 0; }
+  .review-name { font-size: 0.88rem; font-weight: 600; }
+  .review-meta { font-size: 0.72rem; color: var(--gray); }
+  .review-quote { position: absolute; top: 1rem; right: 1.2rem; font-size: 3rem; color: #2a2a2a; font-family: Georgia, serif; line-height: 1; }
+
+  /* CTA */
+  .cta-section { background: var(--acid); padding: 4rem; position: relative; overflow: hidden; }
+  .cta-section::before { content: 'GENETIX'; position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); font-family: 'Oswald', sans-serif; font-size: 12rem; font-weight: 700; color: rgba(0,0,0,0.08); line-height: 1; pointer-events: none; }
+  .cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; text-align: center; }
+  .cta-title { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #000; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 1px; }
+  .cta-sub { font-size: 0.9rem; color: rgba(0,0,0,0.65); margin-bottom: 2rem; }
+  .cta-form { display: flex; gap: 0; max-width: 450px; margin: 0 auto; }
+  .cta-input { flex: 1; padding: 0.85rem 1.2rem; font-size: 0.9rem; border: none; background: rgba(0,0,0,0.12); color: #000; outline: none; font-family: 'Inter', sans-serif; }
+  .cta-input::placeholder { color: rgba(0,0,0,0.5); }
+  .cta-submit { background: #000; color: var(--acid); font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 2px; padding: 0.85rem 1.5rem; font-size: 0.85rem; border: none; cursor: pointer; transition: background 0.2s; }
+  .cta-submit:hover { background: #111; }
+  .cta-phone { margin-top: 1.5rem; font-size: 0.85rem; color: rgba(0,0,0,0.7); }
+  .cta-phone a { color: #000; font-weight: 700; text-decoration: none; }
+
+  /* MAP CTA */
+  .map-cta { background: var(--mid); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .map-info { display: flex; align-items: center; gap: 1.5rem; }
+  .map-icon { width: 50px; height: 50px; background: rgba(200,255,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+  .map-address { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+  .map-address strong { color: #fff; font-size: 0.95rem; display: block; }
+  .map-btn { background: transparent; border: 1px solid var(--acid); color: var(--acid); font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 2px; padding: 0.7rem 1.8rem; font-size: 0.85rem; cursor: pointer; transition: background 0.2s, color 0.2s; text-decoration: none; white-space: nowrap; }
+  .map-btn:hover { background: var(--acid); color: #000; }
+
+  /* FOOTER */
+  footer { background: #0a0a0a; padding: 3rem 4rem; border-top: 1px solid #1a1a1a; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+  .footer-brand p { font-size: 0.82rem; color: var(--gray); line-height: 1.7; margin-top: 0.8rem; max-width: 280px; }
+  .footer-socials { display: flex; gap: 0.7rem; margin-top: 1.2rem; }
+  .social-btn { width: 34px; height: 34px; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; cursor: pointer; transition: background 0.2s, color 0.2s; text-decoration: none; color: var(--gray); }
+  .social-btn:hover { background: var(--acid); color: #000; }
+  .footer-heading { font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 1.2rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a { font-size: 0.82rem; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--acid); }
+  .footer-bottom { border-top: 1px solid #1a1a1a; padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 0.75rem; color: #555; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE MENU */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; transition: transform 0.3s, opacity 0.3s; }
+
+  /* POPULAR TIMES */
+  .times-chart { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin-top: 0.5rem; }
+  .time-bar { flex: 1; background: #333; border-radius: 2px 2px 0 0; transition: background 0.2s; position: relative; }
+  .time-bar:hover { background: var(--acid); }
+  .time-bar.peak { background: rgba(200,255,0,0.5); }
+  .time-bar.now { background: var(--acid); }
+  .times-labels { display: flex; justify-content: space-between; margin-top: 0.4rem; }
+  .time-lbl { font-size: 0.65rem; color: var(--gray); }
+
+  @media (max-width: 900px) {
+    section { padding: 3rem 1.5rem; }
+    .hero-content { padding: 2rem 1.5rem; }
+    .hero-slash { display: none; }
+    .rating-badge { display: none; }
+    .programs-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; background: transparent; gap: 1rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .brand-bar { gap: 1rem; flex-wrap: wrap; padding: 1rem; }
+    .timings-bar { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+    .map-cta { flex-direction: column; align-items: flex-start; }
+    .cta-form { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="logo-text">GENE<span>TIX</span> FITNESS</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#programs">Gallery</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">JOIN NOW</button>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-slash">
+    <div class="hero-img-placeholder">
+      <div style="font-size:14rem;opacity:0.5;user-select:none;">
+        <img src="./src/image/fitness.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="hero-content reveal">
+    <div class="hero-eyebrow">📍 Coimbatore, Tamil Nadu</div>
+    <h1 class="hero-title">
+      STRONGER<br>
+      <span class="outline">EVERY DAY</span><br>
+      <span class="accent">FITTER</span><br>
+      FOREVER
+    </h1>
+    <p class="hero-sub">Where fitness meets inspiration and every drop of sweat tells a story of determination. Dedicated to transforming bodies in the heart of Coimbatore.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">156+</div>
+        <div class="stat-label">Members</div>
+      </div>
+      <div>
+        <div class="stat-num">4.4★</div>
+        <div class="stat-label">Rating</div>
+      </div>
+      <div>
+        <div class="stat-num">12kg</div>
+        <div class="stat-label">Results Proven</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn-primary">GET STARTED</a>
+      <a href="#about" class="btn-ghost">HOW IT WORKS</a>
+    </div>
+  </div>
+  <div class="rating-badge">
+    <div class="rating-score">4.4</div>
+    <div class="rating-stars">★★★★☆</div>
+    <div class="rating-count">156 Reviews</div>
+    <div style="margin-top:0.5rem; font-size:0.72rem; color:var(--gray);">Google Rating</div>
+  </div>
+</section>
+
+<!-- BRAND BAR -->
+<div class="brand-bar">
+  <span class="brand-item">💪 Strength Training</span>
+  <span class="brand-sep">|</span>
+  <span class="brand-item">🧘 Yoga & Flexibility</span>
+  <span class="brand-sep">|</span>
+  <span class="brand-item">🏃 Cardio Workouts</span>
+  <span class="brand-sep">|</span>
+  <span class="brand-item">🥊 Personal Training</span>
+  <span class="brand-sep">|</span>
+  <span class="brand-item">🎯 Posture Correction</span>
+</div>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-eyebrow">Our Programs</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <h2 class="section-title reveal">TRANSFORM YOUR <span class="accent">BODY</span><br><span class="outline">TRANSFORM</span> YOUR LIFE!</h2>
+      <a href="#contact" class="btn-ghost" style="flex-shrink:0;">VIEW ALL →</a>
+    </div>
+    <div class="programs-grid reveal">
+      <div class="program-card" style="aspect-ratio:unset;height:260px;">
+        <div class="program-bg">🏋️</div>
+        <div class="program-card-inner">
+          <div class="program-icon">🏋️</div>
+          <div class="program-name">Strength Training</div>
+          <span class="program-tag">POPULAR</span>
+        </div>
+      </div>
+      <div class="program-card" style="aspect-ratio:unset;height:260px;">
+        <div class="program-bg">🧘</div>
+        <div class="program-card-inner" style="background:linear-gradient(180deg,transparent 0%,rgba(200,255,0,0.15) 100%)">
+          <div class="program-icon">🧘</div>
+          <div class="program-name">Yoga</div>
+          <span class="program-tag">FEATURED</span>
+        </div>
+      </div>
+      <div class="program-card" style="aspect-ratio:unset;height:260px;">
+        <div class="program-bg">🏃</div>
+        <div class="program-card-inner">
+          <div class="program-icon">🏃</div>
+          <div class="program-name">Cardio Blast</div>
+          <span class="program-tag">NEW</span>
+        </div>
+      </div>
+      <div class="program-card" style="aspect-ratio:unset;height:260px;">
+        <div class="program-bg">🎯</div>
+        <div class="program-card-inner">
+          <div class="program-icon">🎯</div>
+          <div class="program-name">Posture Correction</div>
+          <span class="program-tag">SPECIALIST</span>
+        </div>
+      </div>
+      <div class="program-card" style="aspect-ratio:unset;height:260px;">
+        <div class="program-bg">🥊</div>
+        <div class="program-card-inner">
+          <div class="program-icon">🥊</div>
+          <div class="program-name">Boxing & HIIT</div>
+          <span class="program-tag">INTENSE</span>
+        </div>
+      </div>
+      <div class="program-card" style="aspect-ratio:unset;height:260px;">
+        <div class="program-bg">🤸</div>
+        <div class="program-card-inner">
+          <div class="program-icon">🤸</div>
+          <div class="program-name">Flexibility & Core</div>
+          <span class="program-tag">RECOVERY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--card);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-video">
+          <div class="about-video-bg">🏋️</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,255,0,0.05),transparent);"></div>
+          <!-- Popular Times Embedded -->
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(13,13,13,0.9);padding:1rem;backdrop-filter:blur(10px);">
+            <div style="font-size:0.7rem;letter-spacing:2px;color:var(--acid);text-transform:uppercase;margin-bottom:0.5rem;">Popular Times — Saturday</div>
+            <div class="times-chart" id="timesChart"></div>
+            <div class="times-labels">
+              <span class="time-lbl">6a</span>
+              <span class="time-lbl">9a</span>
+              <span class="time-lbl">12p</span>
+              <span class="time-lbl">3p</span>
+              <span class="time-lbl">6p</span>
+              <span class="time-lbl">9p</span>
+            </div>
+          </div>
+          <div class="play-btn" onclick="this.style.display='none'">
+            <div class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-eyebrow">Who We Are</div>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">ELEVATE YOUR <span class="accent">FITNESS</span><br>JOURNEY <span class="outline">WITH US</span></h2>
+        <p class="about-body">Step into a community dedicated to transforming bodies and lives at Genetix Fitness. We believe in the power of your journey — our state-of-the-art facilities are here to support you every step of the way. From invigorating group classes to personalised training programmes, we cater to all fitness levels.</p>
+        <div class="about-features">
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">Expert certified trainers with personalised guidance</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">Posture correction specialist classes</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">Proven results — 12 kg lost in 3 months</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">Friendly community & motivating atmosphere</span>
+          </div>
+        </div>
+        <div class="address-box">
+          <strong>📍 Genetix Fitness, Coimbatore</strong>
+          MS Complex, 117, VKK Menon Rd, Siddhapudur,<br>
+          New Siddhapudur, Coimbatore, Tamil Nadu 641044<br>
+          <span style="color:var(--acid);margin-top:0.4rem;display:inline-block;">📞 098946 46779</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-eyebrow">Why Choose Us</div>
+    <h2 class="section-title reveal">FUEL YOUR <span class="accent">AMBITION</span><br><span class="outline">IGNITE</span> YOUR PASSION</h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🏋️</div>
+        <div class="why-title">Strong Equipment</div>
+        <div class="why-desc">A wide array of fitness equipment catering to various workout styles and training goals at every level.</div>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.1s">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Expert Guidance</div>
+        <div class="why-desc">Certified trainers providing cutting-edge fitness guidance and personalised training programmes for every member.</div>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.2s">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Community & Support</div>
+        <div class="why-desc">A vibrant fitness community with diverse training groups that keep you motivated and accountable every session.</div>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.3s">
+        <div class="why-icon">🕐</div>
+        <div class="why-title">Flexible Timings</div>
+        <div class="why-desc">Morning (5–10 AM) and evening (4:30–8:30 PM) batches designed to fit around your schedule.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMINGS BAR -->
+<div class="timings-bar">
+  <div class="timing-item">
+    <span style="font-size:1.3rem;">🌅</span>
+    <div>
+      <div class="timing-label">Morning Batch</div>
+      <div class="timing-val">5:00 AM – 10:00 AM</div>
+    </div>
+  </div>
+  <div class="timing-sep"></div>
+  <div class="timing-item">
+    <span style="font-size:1.3rem;">🌆</span>
+    <div>
+      <div class="timing-label">Evening Batch</div>
+      <div class="timing-val">4:30 PM – 8:30 PM</div>
+    </div>
+  </div>
+  <div class="timing-sep"></div>
+  <div class="timing-item">
+    <span style="font-size:1.3rem;">📞</span>
+    <div>
+      <div class="timing-label">Call Us</div>
+      <div class="timing-val">098946 46779</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing" style="background:var(--card);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:0;">
+      <div class="section-eyebrow" style="justify-content:center;display:block;">Pricing</div>
+      <h2 class="section-title reveal" style="display:inline-block;">CHOOSE YOUR <span class="accent">PERFECT</span> PLAN</h2>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="price-plan">Daily</div>
+        <div class="price-amount">₹<span>Day</span></div>
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.3rem;">DROP-IN</div>
+        <div class="price-period">Single session pass</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Full gym access for the day</li>
+          <li>All equipment available</li>
+          <li>Trainer assistance included</li>
+          <li class="off">No group classes</li>
+          <li class="off">No diet planning</li>
+        </ul>
+        <a href="tel:09894646779" class="btn-ghost" style="display:block;text-align:center;">CALL TO ENQUIRE</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">MOST POPULAR</div>
+        <div class="price-plan">Monthly</div>
+        <div class="price-amount" style="color:var(--acid);">₹<span>Monthly</span></div>
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.3rem;color:var(--acid);">MONTHLY PLAN</div>
+        <div class="price-period">30 days unlimited access</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Unlimited gym sessions</li>
+          <li>All equipment access</li>
+          <li>Personal trainer guidance</li>
+          <li>Group classes included</li>
+          <li>Posture correction class</li>
+        </ul>
+        <a href="tel:09894646779" class="btn-primary" style="display:block;text-align:center;">ENROLL NOW</a>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Yearly</div>
+        <div class="price-amount">₹<span>Annual</span></div>
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.3rem;">YEARLY PLAN</div>
+        <div class="price-period">12 months — best value</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Unlimited access all year</li>
+          <li>Priority trainer booking</li>
+          <li>All programs included</li>
+          <li>Diet consultation sessions</li>
+          <li>Progress tracking & reviews</li>
+        </ul>
+        <a href="tel:09894646779" class="btn-ghost" style="display:block;text-align:center;">CALL TO ENQUIRE</a>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:0.8rem;color:var(--gray);margin-top:1.5rem;">Call us at <strong style="color:var(--acid);">098946 46779</strong> for exact pricing and current offers.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:0;">
+      <div>
+        <div class="section-eyebrow">Our Blog & Reviews</div>
+        <h2 class="section-title reveal">EXPLORE <span class="outline">MEMBER</span> <span class="accent">STORIES</span></h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-shrink:0;">
+        <div style="text-align:right;">
+          <div style="font-family:'Oswald',sans-serif;font-size:3rem;font-weight:700;color:var(--acid);line-height:1;">4.4</div>
+          <div style="color:var(--acid);font-size:1.1rem;letter-spacing:3px;">★★★★☆</div>
+          <div style="font-size:0.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;">156 Google Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">I've reduced 12 kg in 3 months, and I'm really happy with my progress! The gym has been a great support — good environment, helpful trainers, and motivating workouts.</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Mahima Rithi</div>
+            <div class="review-meta">11 months ago · Verified Member</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal" style="transition-delay:0.1s">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">One of the nicest gyms located right in the heart of Coimbatore. Superb equipment and super friendly trainers. The ambience is just awesome.</p>
+        <div class="review-author">
+          <div class="review-avatar">V</div>
+          <div>
+            <div class="review-name">Vishwaa Krishnaa</div>
+            <div class="review-meta">3 years ago · Local Guide · 111 reviews</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal" style="transition-delay:0.2s">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Amazing place to workout with friendly trainers. Received a great outcome from my training here. Highly recommend to anyone looking to get fit in Coimbatore!</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Arjun S.</div>
+            <div class="review-meta">8 months ago · Verified Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="https://maps.google.com/?q=Genetix+Fitness+Coimbatore" target="_blank" class="btn-ghost">READ ALL 156 REVIEWS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAP CTA -->
+<div class="map-cta">
+  <div class="map-info">
+    <div class="map-icon">📍</div>
+    <div class="map-address">
+      <strong>Genetix Fitness — MS Complex</strong>
+      117, VKK Menon Rd, Siddhapudur, Coimbatore, Tamil Nadu 641044
+    </div>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="https://maps.google.com/?q=Genetix+Fitness+Coimbatore" target="_blank" class="map-btn">GET DIRECTIONS</a>
+    <a href="tel:09894646779" class="map-btn" style="background:var(--acid);color:#000;border-color:var(--acid);">📞 CALL NOW</a>
+  </div>
+</div>
+
+<!-- CTA / CONTACT -->
+<section id="contact">
+  <div class="cta-section" style="padding:4rem;border-radius:0;">
+    <div class="cta-content">
+      <div style="font-size:0.75rem;letter-spacing:4px;color:rgba(0,0,0,0.6);text-transform:uppercase;margin-bottom:0.5rem;">Coimbatore's Premier Gym</div>
+      <h2 class="cta-title">LET'S JOIN OUR<br>COMMUNITY</h2>
+      <p class="cta-sub">Where fitness meets inspiration and every drop of sweat tells a story of determination. Start your journey today.</p>
+      <div class="cta-form">
+        <input class="cta-input" type="email" placeholder="Enter your email address" id="ctaEmail"/>
+        <button class="cta-submit" onclick="handleCTASubmit()">GET STARTED</button>
+      </div>
+      <p class="cta-phone">Or call us directly: <a href="tel:09894646779">098946 46779</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="font-size:1.8rem;">GENE<span>TIX</span></div>
+        <p>Coimbatore's trusted fitness destination. MS Complex, Siddhapudur — transforming bodies and inspiring lives since day one.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" title="Facebook">f</a>
+          <a href="#" class="social-btn" title="Instagram">ig</a>
+          <a href="#" class="social-btn" title="YouTube">yt</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Timings</div>
+        <ul class="footer-links">
+          <li><a href="#">Morning: 5–10 AM</a></li>
+          <li><a href="#">Evening: 4:30–8:30 PM</a></li>
+          <li><a href="#">Mon–Sat Open</a></li>
+          <li><a href="#">Sunday: Enquire</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Terms & Conditions</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Membership Terms</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Genetix Fitness, Coimbatore. All rights reserved.</p>
+      <p>📍 2X9G+F4 New Siddhapudur, Tamil Nadu</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', function() {
+  const links = document.getElementById('navLinks');
+  const isOpen = links.style.display === 'flex';
+  links.style.display = isOpen ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '70px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = 'rgba(13,13,13,0.97)';
+  links.style.padding = '1.5rem 2rem';
+  links.style.borderBottom = '1px solid #222';
+});
+
+// Popular times chart (Saturday data)
+const saturdayData = [20, 45, 30, 20, 75, 90, 85, 60, 40, 55, 80, 95, 60];
+const chart = document.getElementById('timesChart');
+if (chart) {
+  const maxH = Math.max(...saturdayData);
+  saturdayData.forEach((val, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'time-bar';
+    bar.style.height = `${(val / maxH) * 100}%`;
+    if (val === maxH) bar.classList.add('peak');
+    if (i === 9) bar.classList.add('now'); // ~6pm
+    chart.appendChild(bar);
+  });
+}
+
+// CTA submit
+function handleCTASubmit() {
+  const email = document.getElementById('ctaEmail').value;
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  const btn = document.querySelector('.cta-submit');
+  btn.textContent = '✓ WE\'LL BE IN TOUCH!';
+  btn.style.background = '#1a1a1a';
+  btn.style.color = 'var(--acid)';
+  setTimeout(() => {
+    btn.textContent = 'GET STARTED';
+    btn.style.background = '#000';
+    btn.style.color = 'var(--acid)';
+    document.getElementById('ctaEmail').value = '';
+  }, 3000);
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
